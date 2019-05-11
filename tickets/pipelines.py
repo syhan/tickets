@@ -39,13 +39,13 @@ class TicketPipeline(object):
     TICKET_URL = 'https://www.piaoniu.com/api/v4/tickets.json?b2c=true&eventId={}&ticketCategoryId={}'
 
     def process_item(self, item, spider):
-        item['tickets'] = []
+        item['tickets'] = {}
         ticket_categories = item['ticket_categories']
 
         for c in ticket_categories:
             resp = requests.get(self.TICKET_URL.format(c['activityEventId'], c['id']))
 
             if resp.ok:
-                item['tickets'] += json.loads(resp.text) # concatenate if necessary
+                item['tickets'][c['id']] = json.loads(resp.text)
         
         return item

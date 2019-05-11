@@ -23,5 +23,6 @@ class PiaoniuSpider(scrapy.Spider):
 
         next_page = response.xpath('//li[a="下一页"]/a/@href').get()
         if next_page is not None:
+            #pass
             yield response.follow(next_page, callback=self.parse)
         
