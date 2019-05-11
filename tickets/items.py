@@ -11,8 +11,7 @@ import re
 from scrapy.loader import ItemLoader
 from scrapy.loader.processors import TakeFirst, MapCompose
 
-class PiaoniuEvent(scrapy.Item):
-    # define the fields for your item here like:
+class PiaoNiuEvent(scrapy.Item):
     title = scrapy.Field()
     desc = scrapy.Field()
     time = scrapy.Field()
@@ -22,6 +21,18 @@ class PiaoniuEvent(scrapy.Item):
     ticket_categories = scrapy.Field()
     tickets = scrapy.Field()
 
-class PiaoniuEventLoader(ItemLoader):
+class PiaoNiuEventLoader(ItemLoader):
     default_output_processor = TakeFirst()
     id_in = MapCompose(lambda x: re.sub(r'\D', '', x))
+
+class MoreTicketsEvent(scrapy.Item):
+    name = scrapy.Field()
+    desc = scrapy.Field()
+    time = scrapy.Field()
+    venue = scrapy.Field()
+    id = scrapy.Field()
+    session = scrapy.Field()
+
+class MoreTicketsEventLoader(ItemLoader):
+    default_output_processor = TakeFirst()
+    id_in = MapCompose(lambda x: re.sub(r'/content/', '', x))

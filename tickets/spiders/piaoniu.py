@@ -1,17 +1,16 @@
 # -*- coding: utf-8 -*-
 import scrapy
 
-from scrapy.loader import ItemLoader
-from tickets.items import PiaoniuEvent, PiaoniuEventLoader
+from tickets.items import PiaoNiuEvent, PiaoNiuEventLoader
 
-class PiaoniuSpider(scrapy.Spider):
+class PiaoNiuSpider(scrapy.Spider):
     name = 'piaoniu'
     allowed_domains = ['www.piaoniu.com']
     start_urls = ['http://www.piaoniu.com/sh-all']
 
     def parse(self, response):
         for a in response.css('li.item'):
-            l = PiaoniuEventLoader(item=PiaoniuEvent(), selector=a)
+            l = PiaoNiuEventLoader(item=PiaoNiuEvent(), selector=a)
 
             l.add_css('title', 'div.info div.title a::text')
             l.add_css('desc',  'div.info div.desc::text')
