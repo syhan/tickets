@@ -65,10 +65,14 @@ COOKIES_ENABLED = False
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
+    'tickets.pipelines.SourcePipeline': 1,
     'tickets.pipelines.PiaoNiuEventMetaPipeline': 100,
-    'tickets.pipelines.MoreTicketsSessionPipeline': 101,
-    'tickets.pipelines.PiaoNiuTicketCategoriesPipeline': 200,
-    'tickets.pipelines.PiaoNiuTicketPipeline': 300
+    'tickets.pipelines.PiaoNiuTicketCategoriesPipeline': 101,
+    'tickets.pipelines.PiaoNiuTicketPipeline': 102,
+    'tickets.pipelines.PiaoNiuPointsPipeline': 103,
+    'tickets.pipelines.MoreTicketsSessionPipeline': 200,
+    'tickets.pipelines.MoreTicketsPointsPipeline': 201,
+    'tickets.pipelines.InfluxDbPipeline': 800
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
@@ -93,3 +97,7 @@ ITEM_PIPELINES = {
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
 
 FEED_EXPORT_ENCODING = 'utf-8'
+
+INFLUX_URI = 'localhost'
+INFLUX_PORT = 8086
+INFLUX_DATABASE = 'tickets'

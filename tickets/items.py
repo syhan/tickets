@@ -20,10 +20,13 @@ class PiaoNiuEvent(scrapy.Item):
     meta = scrapy.Field()
     ticket_categories = scrapy.Field()
     tickets = scrapy.Field()
+    points = scrapy.Field()
+    source = scrapy.Field()
 
 class PiaoNiuEventLoader(ItemLoader):
     default_output_processor = TakeFirst()
     id_in = MapCompose(lambda x: re.sub(r'\D', '', x))
+
 
 class MoreTicketsEvent(scrapy.Item):
     name = scrapy.Field()
@@ -32,7 +35,10 @@ class MoreTicketsEvent(scrapy.Item):
     venue = scrapy.Field()
     id = scrapy.Field()
     session = scrapy.Field()
+    points = scrapy.Field()
+    source = scrapy.Field()
 
 class MoreTicketsEventLoader(ItemLoader):
     default_output_processor = TakeFirst()
     id_in = MapCompose(lambda x: re.sub(r'/content/', '', x))
+
