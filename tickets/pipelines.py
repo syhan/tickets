@@ -69,6 +69,7 @@ class PiaoNiuPointsPipeline(object):
                     'venue': item['venue'], 
                     'date': item['time'], 
                     'source': item['source'],
+                    'url': item['url'],
                     'origin_price': c['originPrice']
                 }
                 point['fields'] = {'price': c['lowPrice']}
@@ -102,10 +103,11 @@ class MoreTicketsPointsPipeline(object):
                 point['measurement'] = MEASUREMENT
                 point['tags'] = {
                     'name': item['name'],
-                    'desc': item['desc'], 
+                    'desc': item.get('desc'), 
                     'venue': item['venue'], 
                     'date': item['time'], 
                     'source': item['source'],
+                    'url': item['url'],
                     'origin_price': s['originalPrice']
                 }
                 point['fields'] = {'price': s['minPrice']}

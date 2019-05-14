@@ -22,10 +22,12 @@ class PiaoNiuEvent(scrapy.Item):
     tickets = scrapy.Field()
     points = scrapy.Field()
     source = scrapy.Field()
+    url = scrapy.Field()
 
 class PiaoNiuEventLoader(ItemLoader):
     default_output_processor = TakeFirst()
     id_in = MapCompose(lambda x: re.sub(r'\D', '', x))
+    url_in = MapCompose(lambda x: 'https:' + x)
 
 
 class MoreTicketsEvent(scrapy.Item):
@@ -37,8 +39,11 @@ class MoreTicketsEvent(scrapy.Item):
     session = scrapy.Field()
     points = scrapy.Field()
     source = scrapy.Field()
+    url = scrapy.Field()
 
 class MoreTicketsEventLoader(ItemLoader):
     default_output_processor = TakeFirst()
     id_in = MapCompose(lambda x: re.sub(r'/content/', '', x))
+    url_in = MapCompose(lambda x: 'https://www.moretickets.com' + x)
+
 

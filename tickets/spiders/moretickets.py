@@ -17,6 +17,7 @@ class MoreTicketsSpider(scrapy.Spider):
             l.add_css('time',  'div.show-time::text')
             l.add_css('venue', 'div.show-addr::text')
             l.add_css('id',    'a::attr(href)')
+            l.add_css('url',    'a::attr(href)')
 
             yield l.load_item()
 

@@ -16,7 +16,8 @@ class PiaoNiuSpider(scrapy.Spider):
             l.add_css('desc',  'div.info div.desc::text')
             l.add_css('time',  'div.info div.time::text')
             l.add_css('venue', 'div.info a.venue::text')
-            l.add_css('id',    'div.seo-buy a::attr(href)')
+            l.add_css('id',    'div.info div.title a::attr(href)')
+            l.add_css('url',   'div.info div.title a::attr(href)')  
 
             yield l.load_item()
 

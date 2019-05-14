@@ -68,7 +68,7 @@ ITEM_PIPELINES = {
     'tickets.pipelines.SourcePipeline': 1,
     'tickets.pipelines.PiaoNiuEventMetaPipeline': 100,
     'tickets.pipelines.PiaoNiuTicketCategoriesPipeline': 101,
-    'tickets.pipelines.PiaoNiuTicketPipeline': 102,
+    'tickets.pipelines.PiaoNiuTicketPipeline': None,
     'tickets.pipelines.PiaoNiuPointsPipeline': 103,
     'tickets.pipelines.MoreTicketsSessionPipeline': 200,
     'tickets.pipelines.MoreTicketsPointsPipeline': 201,
