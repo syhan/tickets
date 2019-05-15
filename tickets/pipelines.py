@@ -8,6 +8,8 @@
 import requests
 import json
 import datetime
+import os
+
 from influxdb import InfluxDBClient
 
 MEASUREMENT = 'ticket_price'
@@ -140,9 +142,9 @@ class InfluxDbPipeline(object):
     @classmethod
     def from_crawler(cls, crawler):
         return cls(
-            influx_uri = crawler.settings.get('INFLUX_URI'),
-            influx_port = crawler.settings.get('INFLUX_PORT'),
-            influx_db = crawler.settings.get('INFLUX_DATABASE', 'tickets')
+            influx_uri = os.getenv('INFLUX_URL', crawler.settings.get('INFLUX_URL')),
+            influx_port = os.getenv('INFLUX_PORT', crawler.settings.get('INFLUX_PORT')),
+            influx_db = os.getenv('INFLUX_DATABASE', crawler.settings.get('INFLUX_DATABASE'))
         )
 
     def open_spider(self, spider):

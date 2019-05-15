@@ -98,6 +98,6 @@ ITEM_PIPELINES = {
 
 FEED_EXPORT_ENCODING = 'utf-8'
 
-INFLUX_URI = 'localhost'
+INFLUX_URL = 'localhost'
 INFLUX_PORT = 8086
 INFLUX_DATABASE = 'tickets'

@@ -5,4 +5,4 @@ Use Scrapy to crawl on-sale tickets from
 - PiaoNiu
 - Damai
 
-crawl data transformed with different scrapy pipelines and finally send to InfluxDB for visualization
+Crawl data transformed with Scrapy pipelines and finally send the time-serials data (points) to InfluxDB for further analysis and visualization
