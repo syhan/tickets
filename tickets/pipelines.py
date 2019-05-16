@@ -90,15 +90,21 @@ class MoreTicketsSessionPipeline(object):
     def process_item(self, item, spider):
         if spider.name == 'moretickets':
             resp = requests.get(self.SESSION_URL.format(item['id']))
-            if resp.ok:
+            if resp.ok: 
                 item['session'] = json.loads(resp.text)
-        
+            elif resp.status_code == 555: # occasionally it failed, consider retry
+
+                # avoid recursive invoke since there's no counter in parameter
+                resp = requests.get(self.SESSION_URL.format(item['id']))
+                if resp.ok: 
+                    item['session'] = json.loads(resp.text)
+
         return item
 
 class MoreTicketsPointsPipeline(object):
 
     def process_item(self, item, spider):
-        if spider.name == 'moretickets':
+        if spider.name == 'moretickets' and item.get('session'):
 
             def seatplan_to_point(s):
                 point = {}

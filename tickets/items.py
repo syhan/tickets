@@ -27,6 +27,7 @@ class PiaoNiuEvent(scrapy.Item):
 class PiaoNiuEventLoader(ItemLoader):
     default_output_processor = TakeFirst()
     id_in = MapCompose(lambda x: re.sub(r'\D', '', x))
+    desc_in = MapCompose(lambda x: re.sub(r'\n', '', x))
     url_in = MapCompose(lambda x: 'https:' + x)
 
 
@@ -44,6 +45,7 @@ class MoreTicketsEvent(scrapy.Item):
 class MoreTicketsEventLoader(ItemLoader):
     default_output_processor = TakeFirst()
     id_in = MapCompose(lambda x: re.sub(r'/content/', '', x))
+    desc_in = MapCompose(lambda x: re.sub(r'\n', '', x))
     url_in = MapCompose(lambda x: 'https://www.moretickets.com' + x)
 
 
